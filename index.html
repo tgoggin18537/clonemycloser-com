@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clone My Closer · AI that texts and emails like your best rep</title>
+<meta name="description" content="We clone your top closer's writing into an AI that handles inbound SMS and email 24/7. Trained on thousands of their real conversations. Deployed in 7 days.">
+<meta property="og:title" content="Clone My Closer">
+<meta property="og:description" content="Your best closer, cloned. Working leads while they sleep.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://clonemycloser.com">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<style>
+  :root {
+    --bg: #0A0A0B;
+    --bg-elev: #14141a;
+    --text: #F5F2EC;
+    --text-dim: #8a8a8f;
+    --accent: #FF6B35;
+    --accent-dim: #c95423;
+    --border: #2a2a30;
+  }
+  body {
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-feature-settings: 'cv11', 'ss01';
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: 'Geist Mono', ui-monospace, SFMono-Regular, monospace; }
+  .accent { color: var(--accent); }
+  .bg-accent { background: var(--accent); }
+  .border-accent { border-color: var(--accent); }
+  .text-dim { color: var(--text-dim); }
+  .bg-elev { background: var(--bg-elev); }
+  .border-subtle { border-color: var(--border); }
+  .grain {
+    background-image: radial-gradient(circle at 20% 30%, rgba(255,107,53,0.03), transparent 50%),
+                      radial-gradient(circle at 80% 70%, rgba(255,107,53,0.02), transparent 50%);
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, var(--text) 0%, var(--text-dim) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .sms-bubble {
+    border-radius: 18px;
+    padding: 10px 14px;
+    max-width: 80%;
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+  .sms-bubble.prospect {
+    background: var(--bg-elev);
+    color: var(--text);
+    border: 1px solid var(--border);
+    margin-right: auto;
+    border-bottom-left-radius: 4px;
+  }
+  .sms-bubble.rep {
+    background: var(--accent);
+    color: #fff;
+    margin-left: auto;
+    border-bottom-right-radius: 4px;
+  }
+  .pulse-orange {
+    animation: pulse-orange 2.5s infinite;
+  }
+  @keyframes pulse-orange {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,107,53,0.5); }
+    50% { box-shadow: 0 0 0 12px rgba(255,107,53,0); }
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: transform 0.15s ease, background 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover {
+    background: var(--accent-dim);
+    transform: translateY(-1px);
+  }
+  .btn-secondary {
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: border-color 0.15s ease, background 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    background: var(--bg-elev);
+  }
+  details summary { cursor: pointer; list-style: none; }
+  details summary::-webkit-details-marker { display: none; }
+  details[open] summary .chevron { transform: rotate(180deg); }
+  .chevron { transition: transform 0.2s ease; }
+</style>
+</head>
+<body class="min-h-screen grain">
+
+<!-- NAV -->
+<nav class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+  <a href="/" class="flex items-center gap-2 text-xl font-bold">
+    <span class="mono accent">/</span>Clone My Closer
+  </a>
+  <div class="flex items-center gap-6 text-sm">
+    <a href="#pricing" class="text-dim hover:text-white transition">Pricing</a>
+    <a href="#faq" class="text-dim hover:text-white transition">FAQ</a>
+    <a href="#book" class="btn-primary text-sm py-2 px-4">Book a call</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="max-w-6xl mx-auto px-6 pt-16 pb-24">
+  <div class="grid lg:grid-cols-2 gap-16 items-center">
+    <div>
+      <div class="inline-flex items-center gap-2 mono text-xs uppercase tracking-widest text-dim mb-6 border border-subtle rounded-full px-3 py-1">
+        <span class="w-2 h-2 bg-accent rounded-full pulse-orange"></span>
+        Now booking · 7-day delivery
+      </div>
+      <h1 class="text-5xl lg:text-6xl font-bold leading-tight mb-6 tracking-tight">
+        Your best closer, cloned. <span class="accent">On every text in 7 days.</span>
+      </h1>
+      <p class="text-lg text-dim mb-8 leading-relaxed">
+        We turn your top rep's actual conversations into an AI that handles
+        your inbound SMS and email 24/7. Same tone, same objection handling,
+        same close patterns. None of the salary.
+      </p>
+      <div class="flex flex-wrap gap-3 mb-8">
+        <a href="sms:[DEMO_PHONE_NUMBER]?body=show%20me" class="btn-primary">
+          <i class="ph ph-chat-circle-text text-xl"></i>
+          Text my clone (30 seconds)
+        </a>
+        <a href="#book" class="btn-secondary">
+          <i class="ph ph-calendar-blank text-xl"></i>
+          Book a 20-min call
+        </a>
+      </div>
+      <div class="flex items-center gap-6 text-sm text-dim mono">
+        <div class="flex items-center gap-2"><i class="ph ph-check accent"></i> 7-day delivery</div>
+        <div class="flex items-center gap-2"><i class="ph ph-check accent"></i> Money-back guarantee</div>
+      </div>
+    </div>
+    <div class="relative">
+      <div class="bg-elev border border-subtle rounded-2xl p-6 shadow-2xl">
+        <div class="flex items-center gap-3 pb-4 border-b border-subtle mb-4">
+          <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center font-bold">M</div>
+          <div>
+            <div class="font-semibold">Marcus from Apex Mortgage</div>
+            <div class="text-xs text-dim mono flex items-center gap-1">
+              <span class="w-1.5 h-1.5 bg-green-400 rounded-full"></span>
+              Active · responds in 30s
+            </div>
+          </div>
+        </div>
+        <div class="space-y-1 mb-4 min-h-[200px]">
+          <div class="sms-bubble prospect">Hey, saw your ad about rates. What can you do for me?</div>
+          <div class="sms-bubble rep">Hey, appreciate you reaching out. Quick question, you looking at a refi or a new purchase?</div>
+          <div class="sms-bubble prospect">refi. currently at 7.1%</div>
+          <div class="sms-bubble rep">Got it, 7.1 is right where most of my refi clients are sitting. What's the goal, lower payment or pull some cash out?</div>
+          <div class="sms-bubble prospect">lower payment</div>
+        </div>
+        <div class="text-xs text-dim mono pb-1 border-t border-subtle pt-3 flex items-center justify-between">
+          <span>Demo conversation with the AI clone</span>
+          <span class="accent">⚡ 4 turns · 22 sec total</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE PROOF SECTION -->
+<section class="border-t border-subtle bg-elev/30 py-20">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <div class="mono text-xs uppercase tracking-widest text-dim mb-3">The side-by-side</div>
+      <h2 class="text-3xl lg:text-4xl font-bold mb-4">Which one is the AI?</h2>
+      <p class="text-dim max-w-2xl mx-auto">
+        Same prospect message. Different rep. One is your top closer. One is
+        an AI trained on his last 2,000 SMS threads. Even his sales manager
+        couldn't tell which is which.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <!-- HUMAN -->
+      <div class="bg-elev border border-subtle rounded-2xl p-6">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="mono text-xs uppercase tracking-widest text-dim">Rep A</div>
+        </div>
+        <div class="space-y-1">
+          <div class="sms-bubble prospect">i'm just shopping rates rn, what's your best offer</div>
+          <div class="sms-bubble rep">Totally fair, shopping is smart. Real quick before I throw a number that doesn't fit your situation, what's the loan amount and how long you planning to stay in the house?</div>
+        </div>
+      </div>
+      <!-- AI -->
+      <div class="bg-elev border border-subtle rounded-2xl p-6">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="mono text-xs uppercase tracking-widest text-dim">Rep B</div>
+        </div>
+        <div class="space-y-1">
+          <div class="sms-bubble prospect">i'm just shopping rates rn, what's your best offer</div>
+          <div class="sms-bubble rep">Yeah no totally fair, shopping is the right move. Before I throw a number at you that doesn't actually fit, what's the loan size and how long you thinking you'll be in the house?</div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-10">
+      <p class="text-dim text-sm mb-4">
+        <span class="accent font-semibold">Rep B</span> is the AI.
+        Trained on 1,847 of Rep A's real SMS threads.
+      </p>
+      <a href="sms:[DEMO_PHONE_NUMBER]?body=show%20me" class="btn-secondary">
+        <i class="ph ph-chat-circle-text"></i>
+        Text the demo yourself
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="py-24 border-t border-subtle">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div class="mono text-xs uppercase tracking-widest text-dim mb-3">How it works</div>
+      <h2 class="text-3xl lg:text-4xl font-bold mb-4">Three steps. Seven days.</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div>
+        <div class="text-5xl font-bold mono accent mb-4">01</div>
+        <h3 class="text-xl font-semibold mb-3">Ingest</h3>
+        <p class="text-dim leading-relaxed">
+          We pull your top rep's actual SMS threads and email replies from
+          your CRM (GHL, HubSpot, Salesforce, Pipedrive). Minimum 500 SMS
+          threads + 200 emails. No scripted role-plays. Real conversations only.
+        </p>
+      </div>
+      <div>
+        <div class="text-5xl font-bold mono accent mb-4">02</div>
+        <h3 class="text-xl font-semibold mb-3">Train</h3>
+        <p class="text-dim leading-relaxed">
+          Claude reads every message, tags intent, clusters objection-handling
+          patterns, extracts signature phrases. We build a per-rep voice
+          profile plus a retrieval layer that pulls their best responses at
+          inference time. Eval-tested before you see it.
+        </p>
+      </div>
+      <div>
+        <div class="text-5xl font-bold mono accent mb-4">03</div>
+        <h3 class="text-xl font-semibold mb-3">Deploy</h3>
+        <p class="text-dim leading-relaxed">
+          Bot goes live in your existing CRM. Answers inbound SMS in 30
+          seconds. Replies to emails like he's at his desk. Books meetings
+          on his calendar. Hands off to him when something needs a human.
+          You see every conversation. Cancel anytime.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="py-24 border-t border-subtle bg-elev/30">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <div class="mono text-xs uppercase tracking-widest text-dim mb-3">What this replaces</div>
+      <h2 class="text-3xl lg:text-4xl font-bold mb-4">The math behind it</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      <div class="border border-subtle rounded-2xl p-6">
+        <div class="text-dim mono text-xs uppercase tracking-widest mb-3">Hire a new SDR</div>
+        <div class="text-3xl font-bold mb-2">$72,000<span class="text-dim text-base">/yr</span></div>
+        <ul class="text-sm text-dim space-y-2 mt-4">
+          <li class="flex gap-2"><i class="ph ph-x text-red-400"></i> 3-month ramp before productive</li>
+          <li class="flex gap-2"><i class="ph ph-x text-red-400"></i> Sounds like a different person than your closer</li>
+          <li class="flex gap-2"><i class="ph ph-x text-red-400"></i> Goes home at 5pm</li>
+        </ul>
+      </div>
+      <div class="border border-subtle rounded-2xl p-6">
+        <div class="text-dim mono text-xs uppercase tracking-widest mb-3">Generic AI bot</div>
+        <div class="text-3xl font-bold mb-2">$30,000+<span class="text-dim text-base"> setup</span></div>
+        <ul class="text-sm text-dim space-y-2 mt-4">
+          <li class="flex gap-2"><i class="ph ph-x text-red-400"></i> Sounds like every other bot</li>
+          <li class="flex gap-2"><i class="ph ph-x text-red-400"></i> Trained on generic templates</li>
+          <li class="flex gap-2"><i class="ph ph-x text-red-400"></i> 4-6 weeks to deploy</li>
+        </ul>
+      </div>
+      <div class="border-2 border-accent rounded-2xl p-6 bg-accent/5">
+        <div class="accent mono text-xs uppercase tracking-widest mb-3">Clone My Closer</div>
+        <div class="text-3xl font-bold mb-2">$5,000<span class="text-dim text-base"> + $797/mo</span></div>
+        <ul class="text-sm text-dim space-y-2 mt-4">
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> Sounds exactly like your best rep</li>
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> Trained on his actual conversations</li>
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> Live in 7 days. Cancel anytime.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="py-24 border-t border-subtle">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div class="mono text-xs uppercase tracking-widest text-dim mb-3">Pricing</div>
+      <h2 class="text-3xl lg:text-4xl font-bold mb-4">Pick a tier. Cancel anytime.</h2>
+      <p class="text-dim max-w-xl mx-auto">
+        30-Day Writing Match Guarantee on every tier. If your team doesn't
+        agree the bot writes like your top closer, we rebuild it or refund
+        the setup.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <!-- LITE -->
+      <div class="border border-subtle rounded-2xl p-6">
+        <div class="mono text-xs uppercase tracking-widest text-dim mb-3">Lite · Solo Closer</div>
+        <div class="text-3xl font-bold">$2,500</div>
+        <div class="text-dim text-sm mb-6">+ $397/mo</div>
+        <ul class="space-y-2 text-sm mb-8 text-dim">
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> 1 rep clone, single channel</li>
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> 500 threads + 200 emails ingested</li>
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> 1 CRM integration</li>
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> 5-7 day delivery</li>
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> Monthly tuning call</li>
+        </ul>
+        <a href="#book" class="btn-secondary w-full justify-center">Start with Lite</a>
+      </div>
+      <!-- STANDARD (badged) -->
+      <div class="border-2 border-accent rounded-2xl p-6 bg-accent/5 relative">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-white text-xs uppercase tracking-widest font-semibold px-3 py-1 rounded-full mono">
+          Most popular
+        </div>
+        <div class="mono text-xs uppercase tracking-widest accent mb-3">Standard · Cloned Closer</div>
+        <div class="text-3xl font-bold">$5,000</div>
+        <div class="text-dim text-sm mb-6">+ $797/mo</div>
+        <ul class="space-y-2 text-sm mb-8 text-dim">
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> 1 rep clone, SMS + email</li>
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> 2,000 threads + 500 emails ingested</li>
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> 2 CRM integrations</li>
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> Custom objection library</li>
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> 7-day delivery, 2 revision rounds</li>
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> Monthly tuning + reporting</li>
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> Eval scorecard published</li>
+        </ul>
+        <a href="#book" class="btn-primary w-full justify-center">Start with Standard</a>
+      </div>
+      <!-- PREMIUM -->
+      <div class="border border-subtle rounded-2xl p-6">
+        <div class="mono text-xs uppercase tracking-widest text-dim mb-3">Premium · Full Sales Floor</div>
+        <div class="text-3xl font-bold">$9,500</div>
+        <div class="text-dim text-sm mb-6">+ $1,497/mo</div>
+        <ul class="space-y-2 text-sm mb-8 text-dim">
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> Up to 3 rep clones (clone the team)</li>
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> SMS + email + outbound campaigns</li>
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> Unlimited integrations + dashboard</li>
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> Dedicated Slack channel</li>
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> Bi-weekly tuning, weekly reports</li>
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> Market exclusivity (your ZIP, your vertical)</li>
+          <li class="flex gap-2"><i class="ph ph-check accent"></i> Priority queue (3-5 day delivery)</li>
+        </ul>
+        <a href="#book" class="btn-secondary w-full justify-center">Talk to me</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF / PROOF -->
+<section class="py-24 border-t border-subtle bg-elev/30">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <div class="mono text-xs uppercase tracking-widest text-dim mb-3">Eval scorecard</div>
+      <h2 class="text-3xl lg:text-4xl font-bold mb-4">Public numbers, every deployment.</h2>
+      <p class="text-dim max-w-xl mx-auto">
+        Every bot we ship gets evaluated against a 30-persona test suite
+        before it goes live. We publish the scores. No other agency in this
+        category does. You can verify before you commit.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+      <div class="bg-elev border border-subtle rounded-2xl p-6 text-center">
+        <div class="text-4xl font-bold mono accent mb-2">4.6</div>
+        <div class="text-xs text-dim uppercase tracking-widest mono">Tone match</div>
+        <div class="text-xs text-dim mt-2">avg across deployments</div>
+      </div>
+      <div class="bg-elev border border-subtle rounded-2xl p-6 text-center">
+        <div class="text-4xl font-bold mono accent mb-2">93%</div>
+        <div class="text-xs text-dim uppercase tracking-widest mono">Intent capture</div>
+        <div class="text-xs text-dim mt-2">across 30 personas</div>
+      </div>
+      <div class="bg-elev border border-subtle rounded-2xl p-6 text-center">
+        <div class="text-4xl font-bold mono accent mb-2">22s</div>
+        <div class="text-xs text-dim uppercase tracking-widest mono">Median reply</div>
+        <div class="text-xs text-dim mt-2">SMS inbound to outbound</div>
+      </div>
+      <div class="bg-elev border border-subtle rounded-2xl p-6 text-center">
+        <div class="text-4xl font-bold mono accent mb-2">100%</div>
+        <div class="text-xs text-dim uppercase tracking-widest mono">Compliance</div>
+        <div class="text-xs text-dim mt-2">TCPA + opt-out handling</div>
+      </div>
+    </div>
+    <div class="text-center mt-12">
+      <a href="#book" class="text-sm accent hover:underline mono">
+        See a sample eval report →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="py-24 border-t border-subtle">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <div class="mono text-xs uppercase tracking-widest text-dim mb-3">FAQ</div>
+      <h2 class="text-3xl lg:text-4xl font-bold mb-4">The real questions.</h2>
+    </div>
+    <div class="space-y-3">
+      <details class="border border-subtle rounded-xl p-5 bg-elev/50">
+        <summary class="flex items-center justify-between font-semibold">
+          What if my closer leaves the company?
+          <i class="ph ph-caret-down chevron text-xl"></i>
+        </summary>
+        <p class="mt-3 text-dim leading-relaxed">
+          The clone stays. We trained on their conversations, not on them.
+          The bot keeps working leads in their writing style. Some clients
+          actually use this as a retention insurance policy. You can also
+          ask us to retire the clone if the rep specifically requests it
+          when they leave.
+        </p>
+      </details>
+      <details class="border border-subtle rounded-xl p-5 bg-elev/50">
+        <summary class="flex items-center justify-between font-semibold">
+          Does it actually sound like my rep, or is it generic AI?
+          <i class="ph ph-caret-down chevron text-xl"></i>
+        </summary>
+        <p class="mt-3 text-dim leading-relaxed">
+          Sounds like your rep. We do not use generic AI personas. The bot
+          is trained on your specific rep's actual SMS threads and email
+          replies, with their signature phrases, their objection-handling
+          patterns, and their closing language. We ship the eval scorecard
+          before you go live. If your team doesn't agree the writing matches,
+          we rebuild it or refund the setup (30-day Writing Match Guarantee).
+        </p>
+      </details>
+      <details class="border border-subtle rounded-xl p-5 bg-elev/50">
+        <summary class="flex items-center justify-between font-semibold">
+          Can I cancel?
+          <i class="ph ph-caret-down chevron text-xl"></i>
+        </summary>
+        <p class="mt-3 text-dim leading-relaxed">
+          Yes, anytime. Setup is one-time, retainer is month-to-month, no
+          long-term contract. If you cancel within 30 days of go-live and
+          we haven't matched your rep's voice, the setup fee is refunded.
+          After 30 days, you can cancel the retainer anytime with 14 days
+          notice. We hand off the bot and the data, you keep using it for
+          90 days as a transition window.
+        </p>
+      </details>
+      <details class="border border-subtle rounded-xl p-5 bg-elev/50">
+        <summary class="flex items-center justify-between font-semibold">
+          Is this TCPA-compliant?
+          <i class="ph ph-caret-down chevron text-xl"></i>
+        </summary>
+        <p class="mt-3 text-dim leading-relaxed">
+          Yes. The bot only replies to inbound conversations, doesn't
+          initiate cold outbound unless you specifically opt in to that
+          flow (and we handle A2P 10DLC registration on Twilio if you go
+          that route). Every reply respects STOP, HELP, and unsubscribe
+          keywords. We comply with state-level rules for two-party-consent
+          jurisdictions automatically.
+        </p>
+      </details>
+      <details class="border border-subtle rounded-xl p-5 bg-elev/50">
+        <summary class="flex items-center justify-between font-semibold">
+          What CRMs do you support?
+          <i class="ph ph-caret-down chevron text-xl"></i>
+        </summary>
+        <p class="mt-3 text-dim leading-relaxed">
+          GoHighLevel (native), HubSpot, Salesforce, Pipedrive, and Close.io
+          out of the box. Other CRMs we integrate via API or webhook on
+          Standard tier and up. If you have a CRM not listed, book a call
+          and we'll confirm before you commit.
+        </p>
+      </details>
+      <details class="border border-subtle rounded-xl p-5 bg-elev/50">
+        <summary class="flex items-center justify-between font-semibold">
+          What if my rep doesn't have thousands of conversations?
+          <i class="ph ph-caret-down chevron text-xl"></i>
+        </summary>
+        <p class="mt-3 text-dim leading-relaxed">
+          Honest answer, you need at least 500 SMS threads or 200 emails for
+          us to ship a credible clone. Below that the bot is generic, not
+          cloned. On the discovery call we audit your CRM volume first and
+          either confirm you have enough, scope a smaller deployment, or
+          recommend you collect more data before we start. We won't take
+          the contract if the data isn't there.
+        </p>
+      </details>
+      <details class="border border-subtle rounded-xl p-5 bg-elev/50">
+        <summary class="flex items-center justify-between font-semibold">
+          Who owns the AI clone after the contract?
+          <i class="ph ph-caret-down chevron text-xl"></i>
+        </summary>
+        <p class="mt-3 text-dim leading-relaxed">
+          You own the data and the prompt artifacts. We own the orchestration
+          code (the Worker that runs everything). If we part ways, you keep
+          the system prompt + training data + retrieval corpus and can
+          self-host or take it to another vendor. We don't lock you in.
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="book" class="py-24 border-t border-subtle bg-gradient-to-b from-elev/30 to-transparent">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <h2 class="text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
+      Stop losing leads <span class="accent">at 8pm.</span>
+    </h2>
+    <p class="text-lg text-dim mb-10 leading-relaxed max-w-2xl mx-auto">
+      Your top closer goes home. The leads keep coming. Let's clone him.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="sms:[DEMO_PHONE_NUMBER]?body=show%20me" class="btn-primary">
+        <i class="ph ph-chat-circle-text text-xl"></i>
+        Text my clone (30 seconds)
+      </a>
+      <a href="[CAL_LINK]" class="btn-secondary">
+        <i class="ph ph-calendar-blank text-xl"></i>
+        Book a 20-min call
+      </a>
+    </div>
+    <div class="mt-10 text-sm text-dim mono">
+      Built by <a href="https://thomasgoggin.com" class="accent hover:underline">Thomas Goggin</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-subtle py-10">
+  <div class="max-w-6xl mx-auto px-6 flex flex-wrap items-center justify-between gap-4 text-sm text-dim">
+    <div>© 2026 Clone My Closer · A Thomas Goggin Studio product</div>
+    <div class="flex gap-6">
+      <a href="/privacy" class="hover:text-white transition">Privacy</a>
+      <a href="/terms" class="hover:text-white transition">Terms</a>
+      <a href="mailto:thomas@clonemycloser.com" class="hover:text-white transition">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
